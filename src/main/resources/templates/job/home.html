@@ -13,6 +13,14 @@
 <body>
 <div class="container">
     <a th:href="@{/job/new}">Nova</a> <br>
+
+    <div th:if="${param.success}">
+        <div class="alert alert-info">Job edited successfully!</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-info">Error when editing job</div>
+    </div>
+
     <h2>Todas as vagas</h2>
     <table class="table">
         <thead>

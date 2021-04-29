@@ -61,4 +61,10 @@ public class JobController {
         jobService.save(job);
         return "redirect:/job/edit/" + job.getId() + "?success";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteGet(Model model, @PathVariable String id) {
+        jobService.delete(id);
+        return "redirect:/job?success";
+    }
 }

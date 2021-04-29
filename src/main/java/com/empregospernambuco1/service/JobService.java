@@ -9,4 +9,5 @@ public interface JobService {
     Job save(Job job);
     List<Job> findAll();
     Job findById(Long id);
+    void delete(String id);
 }

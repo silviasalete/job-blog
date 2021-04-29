@@ -31,4 +31,10 @@ public class JobServiceImpl implements JobService{
         Optional<Job> job = jobRepository.findById(id);
         return job.get();
     }
+
+    @Override
+    public void delete(String id) {
+        Optional<Job> optionalJob = jobRepository.findById(Long.parseLong(id));
+        jobRepository.delete(optionalJob.get());
+    }
 }
