@@ -6,21 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Job {
+public class Job extends Opportunity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String                 title;
-    @ManyToOne
-    private City                    city;
     @ManyToOne
     private Occupation        occupation;
-    private BigDecimal            salary;
-    private String               company;
-    private String                 email;
-    private String           description;
 
     @Enumerated(EnumType.STRING)
     private TypeJob                 type;
@@ -30,38 +19,11 @@ public class Job {
 
     @Enumerated(EnumType.STRING)
     private RecurrentJob       recurrent;
-    @ManyToOne
-    private User               createdBy;
-    @ManyToOne
-    private User               updatedBy;
-    private Date               createdIn;
-    private Date               updatedIn;
+    private String               company;
+    private String                 email;
+    private String           description;
 
     public Job() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
     }
 
     public String getCompany() {
@@ -112,51 +74,11 @@ public class Job {
         this.recurrent = recurrent;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
     public Occupation getOccupation() {
         return occupation;
     }
 
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
-    }
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
-    public Date getUpdatedIn() {
-        return updatedIn;
-    }
-
-    public void setUpdatedIn(Date updatedIn) {
-        this.updatedIn = updatedIn;
-    }
-
-    public User getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(User updatedBy) {
-        this.updatedBy = updatedBy;
     }
 }
