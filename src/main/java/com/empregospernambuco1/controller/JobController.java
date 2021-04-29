@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/job")
@@ -45,8 +46,8 @@ public class JobController {
     }
 
     @PostMapping("/new")
-    public String jobNewPost(JobDto jobDto) {
-        jobService.save(jobDto.toJob());
+    public String jobNewPost(JobDto jobDto,Principal principal) {
+        jobService.save(jobDto.toJob(),principal);
         return "redirect:/job/new?success";
     }
 
@@ -59,8 +60,8 @@ public class JobController {
     }
 
     @PostMapping("/edit")
-    public String editPost(Job job) {
-        jobService.save(job);
+    public String editPost(Job job, Principal principal) {
+        jobService.edit(job, principal);
         return "redirect:/job/edit/" + job.getId() + "?success";
     }
 
