@@ -63,11 +63,9 @@ public class JobController {
         return  "job/edit";
     }
 
-//    @PostMapping()
-//    public String editPost(Job job){
-//        model.addAttribute("job",jobService.findById(Long.parseLong(id)));
-//        model.addAttribute("cities",cityService.findAll());
-//        model.addAttribute("occupations",occupationService.findAll());
-//        return  "job/edit";
-//    }
+    @PostMapping("/edit")
+    public String editPost(Job job){
+        jobService.save(job);
+        return  "redirect:/job/edit/"+job.getId()+"?success";
+    }
 }

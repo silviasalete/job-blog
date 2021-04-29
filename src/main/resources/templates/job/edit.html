@@ -12,7 +12,10 @@
 </head>
 <body>
     <div th:if="${param.success}">
-        <div class="alert alert-info">Job successfully!</div>
+        <div class="alert alert-info">Job edited successfully!</div>
+    </div>
+    <div th:if="${param.error}">
+        <div class="alert alert-info">Error when editing job</div>
     </div>
 
     <a th:href="@{/job}">Voltar</a>
