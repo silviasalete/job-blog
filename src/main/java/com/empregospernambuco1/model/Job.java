@@ -2,6 +2,7 @@ package com.empregospernambuco1.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,13 +23,19 @@ public class Job {
     private String           description;
 
     @Enumerated(EnumType.STRING)
-    private TypeJob type;
+    private TypeJob                 type;
 
     @Enumerated(EnumType.STRING)
-    private StateJob status;
+    private StateJob              status;
 
     @Enumerated(EnumType.STRING)
-    private RecurrentJob recurrent;
+    private RecurrentJob       recurrent;
+    @ManyToOne
+    private User               createdBy;
+    @ManyToOne
+    private User               updatedBy;
+    private Date               createdIn;
+    private Date               updatedIn;
 
     public Job() {
     }
@@ -119,5 +126,37 @@ public class Job {
 
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedIn() {
+        return createdIn;
+    }
+
+    public void setCreatedIn(Date createdIn) {
+        this.createdIn = createdIn;
+    }
+
+    public Date getUpdatedIn() {
+        return updatedIn;
+    }
+
+    public void setUpdatedIn(Date updatedIn) {
+        this.updatedIn = updatedIn;
+    }
+
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }
