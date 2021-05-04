@@ -1,8 +1,9 @@
-package com.empregospernambuco1.service;
+package com.empregospernambuco1.service.impl;
 
 import com.empregospernambuco1.model.Role;
 import com.empregospernambuco1.model.User;
 import com.empregospernambuco1.repository.UserRepository;
+import com.empregospernambuco1.service.UserService;
 import com.empregospernambuco1.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

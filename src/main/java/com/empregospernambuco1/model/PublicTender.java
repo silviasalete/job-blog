@@ -3,22 +3,36 @@ package com.empregospernambuco1.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 public class PublicTender extends Opportunity {
 
-    private String caption;
-    private String examinationBoard;
-    private BigDecimal valueExame;
     @Enumerated(value = EnumType.STRING)
-    private Level level;
-    private String office;
+    private Level              level;
+    private String           caption;
+    private String  examinationBoard;
+    private BigDecimal    valueExame;
+    private String            office;
     private Date deadlineSubscripton;
-    private Integer amount;
-    private String linkNotice;
+    private Integer           amount;
+    private String        linkNotice;
+
+    public PublicTender() {
+    }
+
+    public PublicTender(City city, User createdBy, User updatedBy, String title, BigDecimal salary, Date createdIn, Date updatedIn, Level level, String caption, String examinationBoard, BigDecimal valueExame, String office, Date deadlineSubscripton, Integer amount, String linkNotice) {
+        super(city, createdBy, updatedBy, title, salary, createdIn, updatedIn);
+        this.level = level;
+        this.caption = caption;
+        this.examinationBoard = examinationBoard;
+        this.valueExame = valueExame;
+        this.office = office;
+        this.deadlineSubscripton = deadlineSubscripton;
+        this.amount = amount;
+        this.linkNotice = linkNotice;
+    }
 
     public String getCaption() {
         return caption;
