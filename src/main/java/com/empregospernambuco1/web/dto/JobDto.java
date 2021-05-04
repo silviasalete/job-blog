@@ -1,24 +1,21 @@
 package com.empregospernambuco1.web.dto;
 
 import com.empregospernambuco1.model.*;
-import com.empregospernambuco1.utils.FormatService;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class JobDto {
 
-    private String       title;
-    private City         city;
-    private Occupation   occupation;
-    private String   salary;
-    private String       company;
-    private String       email;
+    private String             title;
+    private City                city;
+    private Occupation    occupation;
+    private String            salary;
+    private String           company;
+    private String             email;
     private String       description;
-    private TypeJob      type;
-    private StateJob     status;
-    private RecurrentJob recurrent;
+    private TypeJob             type;
+    private StateJob          status;
+    private RecurrentJob   recurrent;
 
     public JobDto() {
         setStatus(StateJob.ACTIVE);
@@ -55,6 +52,7 @@ public class JobDto {
     }
 
     public void setSalary(String salary) {
+//        this.salary = new BigDecimal(salary.replace(".","").replace(",","."));
         this.salary = salary;
     }
 
@@ -106,20 +104,19 @@ public class JobDto {
         this.recurrent = recurrent;
     }
 
-    public Job toJob() {
-        Job job = new Job();
-        FormatService formatService = new FormatService();
-
-        job.setTitle(getTitle());
-        job.setCity(getCity());
-        job.setOccupation(getOccupation());
-        job.setSalary(formatService.stringToBigDecimail(getSalary()));
-        job.setCompany(getCompany());
-        job.setEmail(getEmail());
-        job.setDescription(getDescription());
-        job.setType(getType());
-        job.setStatus(getStatus());
-        job.setRecurrent(getRecurrent());
-        return job;
+    @Override
+    public String toString() {
+        return "JobDto{" +
+                "  title='" + title + '\'' +
+                ", city=" + city +
+                ", occupation=" + occupation +
+                ", salary=" + salary +
+                ", company='" + company + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", recurrent=" + recurrent +
+                '}';
     }
 }

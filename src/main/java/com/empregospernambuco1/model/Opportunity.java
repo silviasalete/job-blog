@@ -1,25 +1,41 @@
 package com.empregospernambuco1.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class Opportunity {
+@MappedSuperclass
+public abstract class Opportunity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long          id;
-    private String     title;
+    private Long           id;
+
     @ManyToOne
-    private City        city;
-    private Salary    salary;
+    private City         city;
+
     @ManyToOne
-    private User   createdBy;
+    private User    createdBy;
+
     @ManyToOne
-    private User   updatedBy;
-    private Date createdIn;
-    private Date   updatedIn;
+    private User    updatedBy;
+    private String      title;
+    private BigDecimal salary;
+    private Date    createdIn;
+    private Date    updatedIn;
+
+    public Opportunity() {
+    }
+
+    public Opportunity(City city, User createdBy, User updatedBy, String title, BigDecimal salary, Date createdIn, Date updatedIn) {
+        this.city = city;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+        this.title = title;
+        this.salary = salary;
+        this.createdIn = createdIn;
+        this.updatedIn = updatedIn;
+    }
 
     public Long getId() {
         return id;
@@ -45,11 +61,11 @@ public class Opportunity {
         this.city = city;
     }
 
-    public Salary getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Salary salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 

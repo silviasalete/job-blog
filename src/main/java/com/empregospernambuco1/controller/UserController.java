@@ -29,7 +29,7 @@ public class UserController {
     public String registrationPost(UserRegistrationDto userRegistrationDto){
         userService.save(userRegistrationDto);
 
-        return "redirect:/registration?success";
+        return "redirect:/user/registration?success";
     }
 
     @GetMapping("/login")

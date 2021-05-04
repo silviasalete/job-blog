@@ -108,7 +108,7 @@
                     </label>
                 </div>
             </fieldset>
-            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:object="${id}" th:field="${id}}">
             <button type="submit" class="btn btn-primary">Alterar</button>
             <button type="reset" class="btn btn-light">Limpar</button>
         </form>

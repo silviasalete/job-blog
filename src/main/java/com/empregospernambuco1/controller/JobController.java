@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.math.BigDecimal;
 import java.security.Principal;
 
 @Controller
@@ -38,29 +37,37 @@ public class JobController {
     @GetMapping("/new")
     public String jobNewGet(Model model) {
         JobDto jobDto = new JobDto();
+        System.out.println("jobDto.toString(): "+jobDto.toString());
         model.addAttribute("job", jobDto);
         model.addAttribute("cities", cityService.findAll());
         model.addAttribute("occupations", occupationService.findAll());
-        return "job/form";
+        return "job/new";
 
     }
 
     @PostMapping("/new")
     public String jobNewPost(JobDto jobDto,Principal principal) {
-        jobService.save(jobDto.toJob(),principal);
+        System.out.println("jobDto.toString(): "+jobDto.toString());
+        jobService.save(jobService.jobToEntity(jobDto),principal);
         return "redirect:/job/new?success";
     }
 
     @GetMapping("/edit/{id}")
     public String editGet(Model model, @PathVariable String id) {
-        model.addAttribute("job", jobService.findById(Long.parseLong(id)));
+        JobDto jobDto = new JobDto();
+        Job job = jobService.findById(Long.parseLong(id));
+        JobDto jobDto1 = jobService.jobToDto(job);
+//        jobDto1.setSalary("123");
+        model.addAttribute("id",id);
+        model.addAttribute("job",jobDto1);
         model.addAttribute("cities", cityService.findAll());
         model.addAttribute("occupations", occupationService.findAll());
         return "job/edit";
     }
 
     @PostMapping("/edit")
-    public String editPost(Job job, Principal principal) {
+    public String editPost(JobDto jobDto, Principal principal) {
+        Job job = jobService.jobToEntity(jobDto);
         jobService.edit(job, principal);
         return "redirect:/job/edit/" + job.getId() + "?success";
     }

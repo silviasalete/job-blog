@@ -1,9 +1,11 @@
 package com.empregospernambuco1.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Job extends Opportunity {
@@ -24,6 +26,17 @@ public class Job extends Opportunity {
     private String           description;
 
     public Job() {
+    }
+
+    public Job(City city, User createdBy, User updatedBy, String title, BigDecimal salary, Date createdIn, Date updatedIn, Occupation occupation, TypeJob type, StateJob status, RecurrentJob recurrent, String company, String email, String description) {
+        super(city, createdBy, updatedBy, title, salary, createdIn, updatedIn);
+        this.occupation = occupation;
+        this.type = type;
+        this.status = status;
+        this.recurrent = recurrent;
+        this.company = company;
+        this.email = email;
+        this.description = description;
     }
 
     public String getCompany() {
