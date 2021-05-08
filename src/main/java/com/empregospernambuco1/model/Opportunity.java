@@ -100,4 +100,5 @@ public abstract class Opportunity {
     public void setUpdatedIn(Date updatedIn) {
         this.updatedIn = updatedIn;
     }
+
 }

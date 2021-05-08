@@ -94,4 +94,18 @@ public class Job extends Opportunity {
     public void setOccupation(Occupation occupation) {
         this.occupation = occupation;
     }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "occupation=" + occupation +
+                ", type=" + type +
+                ", status=" + status +
+                ", recurrent=" + recurrent +
+                ", company='" + company + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                ", salary='" + super.getSalary() + '\'' +
+                '}';
+    }
 }

@@ -36,10 +36,8 @@ public class JobController {
 
     @GetMapping("/new")
     public String jobNewGet(Model model) {
-        JobDto jobDto = new JobDto();
-        System.out.println("jobDto.toString(): "+jobDto.toString());
-        model.addAttribute("job", jobDto);
-        model.addAttribute("cities", cityService.findAll());
+        model.addAttribute("job",         new JobDto());
+        model.addAttribute("cities",      cityService.findAll());
         model.addAttribute("occupations", occupationService.findAll());
         return "job/new";
 
@@ -47,29 +45,22 @@ public class JobController {
 
     @PostMapping("/new")
     public String jobNewPost(JobDto jobDto,Principal principal) {
-        System.out.println("jobDto.toString(): "+jobDto.toString());
         jobService.save(jobService.jobToEntity(jobDto),principal);
         return "redirect:/job/new?success";
     }
 
     @GetMapping("/edit/{id}")
     public String editGet(Model model, @PathVariable String id) {
-        JobDto jobDto = new JobDto();
-        Job job = jobService.findById(Long.parseLong(id));
-        JobDto jobDto1 = jobService.jobToDto(job);
-//        jobDto1.setSalary("123");
-        model.addAttribute("id",id);
-        model.addAttribute("job",jobDto1);
-        model.addAttribute("cities", cityService.findAll());
+        model.addAttribute("job",         jobService.jobToDto(jobService.findById(Long.parseLong(id))));
+        model.addAttribute("cities",      cityService.findAll());
         model.addAttribute("occupations", occupationService.findAll());
         return "job/edit";
     }
 
     @PostMapping("/edit")
     public String editPost(JobDto jobDto, Principal principal) {
-        Job job = jobService.jobToEntity(jobDto);
-        jobService.edit(job, principal);
-        return "redirect:/job/edit/" + job.getId() + "?success";
+        jobService.edit(jobService.jobToEntity(jobDto), principal);
+        return "redirect:/job/edit/" + jobDto.getId() + "?success";
     }
 
     @GetMapping("/delete/{id}")

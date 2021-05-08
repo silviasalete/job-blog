@@ -62,6 +62,7 @@ public class JobServiceImpl implements JobService {
 
     public JobDto jobToDto(Job job){
         JobDto jobDto = new JobDto();
+        jobDto.setId(job.getId());
         jobDto.setTitle(job.getTitle());
         jobDto.setCity(job.getCity());
         jobDto.setOccupation(job.getOccupation());
@@ -78,7 +79,7 @@ public class JobServiceImpl implements JobService {
     public Job jobToEntity(JobDto jobDto) {
 
         Job job = new Job();
-
+        job.setId(jobDto.getId());
         job.setTitle(jobDto.getTitle());
         job.setCity(jobDto.getCity());
         job.setOccupation(jobDto.getOccupation());
