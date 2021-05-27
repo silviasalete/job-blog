@@ -9,11 +9,8 @@
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
+$ git clone https://github.com/silviasalete/job-blog.git
 
-### Prerequisites
-
-* Docker
-  ```sh
-  docker-compose up --build --force-recreate
-  ```
-  To go to http://localhost:8080/
+Run
+Maven clean
+Maven install
