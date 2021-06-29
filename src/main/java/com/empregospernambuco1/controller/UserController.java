@@ -1,6 +1,5 @@
 package com.empregospernambuco1.controller;
 
-import com.empregospernambuco1.service.AutomationService;
 import com.empregospernambuco1.service.UserService;
 import com.empregospernambuco1.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private AutomationService automationService;
 
     @GetMapping("/registration")
     public String registrationGet(Model model){
@@ -42,7 +38,7 @@ public class UserController {
     @GetMapping("/home")
     public String homeUser(Model model, Principal principal) {
         model.addAttribute("user", userService.findByEmail(principal.getName()));
-        model.addAttribute("sumAutomation", Integer.toString(automationService.findAll().size()));
+       // model.addAttribute("sumAutomation", Integer.toString(automationService.findAll().size()));
         return "user/home";
     }
 }
